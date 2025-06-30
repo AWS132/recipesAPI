@@ -14,7 +14,7 @@ return new class extends Migration
             $table->float('quantity', 8, 2);
             $table->timestamps();
             //composite key to prevent duplications
-            $table->unique(['recipe_id', 'ingredient_name']);
+            $table->unique(['recipe_id', 'ingredient']);
         });
     }
 
