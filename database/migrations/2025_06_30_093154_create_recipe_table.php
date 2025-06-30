@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('recipe', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('steps')->nullable();
             //total nutritional value details
             $table->float('total_carbs', 8, 2)->default(0);
             $table->float('total_fat', 8, 2)->default(0);

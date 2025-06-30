@@ -5,7 +5,21 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 class nutritionApiController //Controller for nutrition api
 {
- public static function addIngredient( $name, $carbs, $fats, $protein) {
+ 
+public static function getNutritionalVal($name){
+      $response = Http::withBasicAuth('as', 'MAE298cPSN')
+        ->get('https://interview.workcentrix.de/ingredients.php', [
+            'ingredient' => $name
+        ]);
+                 if($response->successful()){
+                    return $response->json();
+                 }
+                 return [
+                'status' => $response->status(),
+                'message' => $response->body()
+                 ];
+ }
+public static function addIngredient( $name, $carbs, $fats, $protein) {
    $valid = Validator::make([
             'name' => $name,
             'carbs' => $carbs,
@@ -36,18 +50,4 @@ class nutritionApiController //Controller for nutrition api
 
                 return $response->successful();
  }
-public static function getNutritionalVal($name){
-      $response = Http::withBasicAuth('as', 'MAE298cPSN')
-        ->get('https://interview.workcentrix.de/ingredients.php', [
-            'ingredient' => $name
-        ]);
-                 if($response->successful()){
-                    return $response->json();
-                 }
-                 return [
-                'status' => $response->status(),
-                'message' => $response->body()
-                 ];
- }
-
 }

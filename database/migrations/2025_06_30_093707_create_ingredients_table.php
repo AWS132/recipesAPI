@@ -9,7 +9,6 @@ return new class extends Migration
      public function up()
     {
         Schema::create('ingredients', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
             $table->string('ingredient');
             $table->float('quantity', 8, 2);

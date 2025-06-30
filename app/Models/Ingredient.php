@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Steps extends Model
+class Ingredient extends Model
 {
-     protected $fillable = [
+protected $table = "ingredients";
+    protected $fillable = [
         'recipe_id',
-        'description',
-        'order'
+        'ingredient',
+        'quantity',
     ];
 
     protected $casts = [
-        'order' => 'integer'
+        'quantity' => 'float',
     ];
 
     public function recipe()

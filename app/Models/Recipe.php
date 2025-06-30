@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model
 {
-
+    protected $table = "recipe";
     protected $fillable = [
         'name',
         'total_carbs',
         'total_fat',
-        'total_protein'
+        'total_protein',
+        'steps'
     ];
 
     protected $casts = [
@@ -22,11 +23,6 @@ class Recipe extends Model
 
     public function ingredients()
     {
-        return $this->hasMany(Ingredients::class);
-    }
-
-    public function steps()
-    {
-        return $this->hasMany(Steps::class)->orderBy('order');
+        return $this->hasMany(Ingredient::class);
     }
 }
