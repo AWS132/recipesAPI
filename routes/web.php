@@ -10,3 +10,9 @@ Route::get('/add2Ings', function () { //adding 2 ingredients with random value
 });
 
 
+Route::get('/getIngredient', function () { 
+    $result = nutritionApiController::getNutritionalVal("Ananas");
+    
+});
+
+

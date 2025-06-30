@@ -6,21 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+     public function up()
     {
         Schema::create('steps', function (Blueprint $table) {
-            $table->id();
+           $table->id();
+            $table->foreignId('recipe_id')->constrained()->onDelete('cascade');
+            $table->text('description');
+            $table->integer('order');
             $table->timestamps();
+            $table->unique(['recipe_id', 'order','id']);
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('steps');
     }

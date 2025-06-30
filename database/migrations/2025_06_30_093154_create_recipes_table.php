@@ -6,22 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
-        Schema::create('recipes', function (Blueprint $table) {
+        Schema::create('recipe', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            //total nutritional value details
+            $table->float('total_carbs', 8, 2)->default(0);
+            $table->float('total_fat', 8, 2)->default(0);
+            $table->float('total_protein', 8, 2)->default(0);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('recipes');
+        Schema::dropIfExists('recipe');
     }
 };
